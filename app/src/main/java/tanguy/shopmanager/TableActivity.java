@@ -1,10 +1,13 @@
 package tanguy.shopmanager;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -12,32 +15,44 @@ import java.util.Random;
 import de.codecrafters.tableview.listeners.SwipeToRefreshListener;
 import de.codecrafters.tableview.listeners.TableDataClickListener;
 import de.codecrafters.tableview.listeners.TableDataLongClickListener;
+import tanguy.shopmanager.database.DatabaseHelper;
 import tanguy.shopmanager.model.Article;
 import tanguy.shopmanager.productTable.ArticleTableDataAdapter;
 import tanguy.shopmanager.productTable.SortableArticleTableView;
 
 public class TableActivity extends AppCompatActivity {
 
-    ArrayList<Article> articleList = new ArrayList<Article>(); //TODO : CHange this
+    List<Article> articleList = new ArrayList<Article>();
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_table);
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
         }
 
-        articleList.add(new Article(1, "bla", 2, 2));
-        articleList.add(new Article(2, "dqsqsd", 3, 4));
-        articleList.add(new Article(3, "dsqsdqd", 6, 3));
-        articleList.add(new Article(4, "rgegeg", 7, 1));
+        DatabaseHelper databaseHelper = new DatabaseHelper(this.getApplicationContext());
+        try {
+            databaseHelper.createDataBase();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        System.out.println("TableActivity.onCreate");
+        try {
+            databaseHelper.openDataBase();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        articleList = databaseHelper.getAllArticles();
 
         final SortableArticleTableView articleTableView = (SortableArticleTableView) findViewById(R.id.tableView);
+
         if (articleTableView != null) {
             final ArticleTableDataAdapter articleTableDataAdapter = new ArticleTableDataAdapter(this, articleList, articleTableView);
             articleTableView.setDataAdapter(articleTableDataAdapter);

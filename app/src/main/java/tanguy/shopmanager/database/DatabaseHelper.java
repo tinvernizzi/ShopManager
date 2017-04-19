@@ -16,7 +16,7 @@ import java.util.List;
 
 import tanguy.shopmanager.model.Article;
 
-public class databaseHelper extends SQLiteOpenHelper {
+public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static String DB_NAME = "PRODUCT_DATA";
 
@@ -24,7 +24,7 @@ public class databaseHelper extends SQLiteOpenHelper {
     private final Context myContext;
     private List<Article> articles = new ArrayList<>();
 
-    public databaseHelper(Context context) {
+    public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, 1);
         this.myContext = context;
     }
