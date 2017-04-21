@@ -69,7 +69,7 @@ public class TableActivity extends AppCompatActivity {
                             articleTableDataAdapter.getData().add(randomArticle);
                             articleTableDataAdapter.notifyDataSetChanged();
                             refreshIndicator.hide();
-                            Toast.makeText(TableActivity.this, "Added: " + randomArticle, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(TableActivity.this, "Added: " + randomArticle.getName(), Toast.LENGTH_SHORT).show();
                         }
                     }, 3000);
                 }
@@ -86,8 +86,8 @@ public class TableActivity extends AppCompatActivity {
 
         @Override
         public void onDataClicked(final int rowIndex, final Article clickedData) {
-            final String carString = "Click: " + clickedData.getName() + " " + clickedData.getName();
-            Toast.makeText(TableActivity.this, carString, Toast.LENGTH_SHORT).show();
+            final String articleString = "Click: " + clickedData.getName() + " " + clickedData.getName();
+            Toast.makeText(TableActivity.this, articleString, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -95,8 +95,8 @@ public class TableActivity extends AppCompatActivity {
 
         @Override
         public boolean onDataLongClicked(final int rowIndex, final Article clickedData) {
-            final String carString = "Long Click: " + clickedData.getName() + " " + clickedData.getName();
-            Toast.makeText(TableActivity.this, carString, Toast.LENGTH_SHORT).show();
+            final String articleString = "Long Click: " + clickedData.getName() + " " + clickedData.getName();
+            Toast.makeText(TableActivity.this, articleString, Toast.LENGTH_SHORT).show();
             return true;
         }
     }

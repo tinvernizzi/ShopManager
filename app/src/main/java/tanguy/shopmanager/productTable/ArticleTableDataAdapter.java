@@ -103,7 +103,18 @@ public class ArticleTableDataAdapter extends LongPressAwareTableDataAdapter<Arti
     }
 
     private View renderStock(final Article article) {
-        return renderString(((Integer)article.getStock()).toString());
+        final TextView textView = new TextView(getContext());
+        textView.setText(((Integer) article.getStock()).toString());
+        textView.setPadding(20, 10, 20, 10);
+        textView.setTextSize(TEXT_SIZE);
+
+        if (article.getStock() < 0) {
+            textView.setTextColor(0xFFC62828);
+        } else if (article.getStock() > 3) {
+            textView.setTextColor(0xFF2E7D32);
+        }
+
+        return textView;
     }
 
     private View renderIncoming(final Article article) {

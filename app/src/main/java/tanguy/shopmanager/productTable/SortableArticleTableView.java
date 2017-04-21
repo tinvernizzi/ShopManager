@@ -12,12 +12,6 @@ import de.codecrafters.tableview.toolkit.TableDataRowBackgroundProviders;
 import tanguy.shopmanager.R;
 import tanguy.shopmanager.model.Article;
 
-
-/**
- * An extension of the {@link SortableTableView} that handles {@link Article}s.
- *
- * @author ISchwarz
- */
 public class SortableArticleTableView extends SortableTableView<Article> {
 
     public SortableArticleTableView(final Context context) {
