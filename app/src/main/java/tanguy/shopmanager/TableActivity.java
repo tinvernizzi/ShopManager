@@ -1,6 +1,5 @@
 package tanguy.shopmanager;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,7 +14,7 @@ import java.util.Random;
 import de.codecrafters.tableview.listeners.SwipeToRefreshListener;
 import de.codecrafters.tableview.listeners.TableDataClickListener;
 import de.codecrafters.tableview.listeners.TableDataLongClickListener;
-import tanguy.shopmanager.database.DatabaseHelper;
+import tanguy.shopmanager.database.ArticleDatabaseHelper;
 import tanguy.shopmanager.model.Article;
 import tanguy.shopmanager.productTable.ArticleTableDataAdapter;
 import tanguy.shopmanager.productTable.SortableArticleTableView;
@@ -34,7 +33,7 @@ public class TableActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
         }
 
-        DatabaseHelper databaseHelper = new DatabaseHelper(this.getApplicationContext());
+        ArticleDatabaseHelper databaseHelper = new ArticleDatabaseHelper(this.getApplicationContext());
         try {
             databaseHelper.createDataBase();
         } catch (IOException e) {

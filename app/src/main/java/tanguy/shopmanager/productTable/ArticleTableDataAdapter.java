@@ -6,12 +6,10 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
 import java.util.List;
-import java.util.Locale;
 
 import de.codecrafters.tableview.TableView;
 import de.codecrafters.tableview.toolkit.LongPressAwareTableDataAdapter;
@@ -54,7 +52,7 @@ public class ArticleTableDataAdapter extends LongPressAwareTableDataAdapter<Arti
     @Override
     public View getLongPressCellView(int rowIndex, int columnIndex, ViewGroup parentView) {
         final Article article = getRowData(rowIndex);
-        View renderedView = null;
+        View renderedView;
 
         switch (columnIndex) {
             case 1:

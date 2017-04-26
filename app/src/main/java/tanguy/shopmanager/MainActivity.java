@@ -2,9 +2,9 @@ package tanguy.shopmanager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,12 +15,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import tanguy.shopmanager.weather.WeatherManager;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -45,7 +51,19 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ImageView logo = (ImageView) findViewById(R.id.imageView);
+        //Ajoute le logo du magasin
+        ImageView logo = (ImageView) findViewById(R.id.logoImageView);
+        logo.setImageResource(R.drawable.tboth);
+
+        //Adapte le texte a la meteo actuelle du magasin
+        TextView textView = (TextView) findViewById(R.id.weatherTextView);
+        try {
+            WeatherManager weather = new WeatherManager("Biot", this.getApplicationContext());
+            textView.setText(weather.generateWeatherReport());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override

@@ -28,12 +28,15 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static android.Manifest.permission.READ_CONTACTS;
+import static tanguy.shopmanager.R.id.logoImageView;
+import static tanguy.shopmanager.R.id.managerImageView;
 
 /**
  * A login screen that offers login via email/password.
@@ -93,6 +96,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+        //Ajoute le logo du magasin
+        ImageView logo = (ImageView) findViewById(managerImageView);
+        logo.setImageResource(R.drawable.logo_shopmanager);
     }
 
     private void populateAutoComplete() {
@@ -187,7 +194,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // perform the user login attempt.
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
-            MainActivity mainActivity = new MainActivity();
             Intent myIntent = new Intent(this, MainActivity.class);
             myIntent.putExtra("name", email);
             this.startActivity(myIntent);
