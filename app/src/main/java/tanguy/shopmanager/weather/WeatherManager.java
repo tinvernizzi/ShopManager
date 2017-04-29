@@ -20,6 +20,7 @@ public class WeatherManager {
 
     private static String LIST_OF_CITIES = "citylist.json"; //TODO: JSON de 30 mega :(
     private static String API_KEY = "93c9c3ae0f624c7ff4402be5f85b7b2e";
+    private static String LANG = "fr";
 
     Context context;
     String  cityID = "-1";
@@ -62,15 +63,10 @@ public class WeatherManager {
         }
         
         JSONParser parser = new JSONParser();
-        forecast = (JSONObject) parser.parse(readUrl("http://api.openweathermap.org/data/2.5/weather?id=" + cityID + "&appid=" + API_KEY));
+        forecast = (JSONObject) parser.parse(readUrl("http://api.openweathermap.org/data/2.5/weather?id=" + cityID + "&appid=" + API_KEY + "&lang=" + LANG));
+        String weather = (String) ((JSONObject)(((JSONArray) forecast.get("weather")).get(0))).get("description");
 
-        Log.d("JSON", readUrl("http://api.openweathermap.org/data/2.5/weather?id=" + cityID + "&appid=" + API_KEY));
-        for(Object key : forecast.keySet())
-            Log.d("JSON",(String) key);
-
-        String weather = (String) ((JSONObject)(((JSONArray) forecast.get("weather")).get(0))).get("main");
-
-        return ("The weather in " + forecast.get("name") + " is " + weather);
+        return ("Meteo a " + forecast.get("name") + " : " + weather + ".");
     }
 
     public void setForecastImage(ImageView image) {

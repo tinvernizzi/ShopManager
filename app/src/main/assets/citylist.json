@@ -1,0 +1,119 @@
+[
+  {
+    "id": 3032579,
+    "name": "Biot",
+    "country": "FR",
+    "coord": {
+      "lon": 7.09645,
+      "lat": 43.627232
+    }
+  },
+  {
+    "id": 6443005,
+    "name": "Morzine",
+    "country": "FR",
+    "coord": {
+      "lon": 6.70732,
+      "lat": 46.181492
+    }
+  },
+  {
+    "id": 6448311,
+    "name": "Auch",
+    "country": "FR",
+    "coord": {
+      "lon": 0.58333,
+      "lat": 43.650002
+    }
+  },
+  {
+    "id": 6451006,
+    "name": "Annecy-le-Vieux",
+    "country": "FR",
+    "coord": {
+      "lon": 6.15,
+      "lat": 45.916672
+    }
+  },
+  {
+    "id": 6452610,
+    "name": "Alfortville",
+    "country": "FR",
+    "coord": {
+      "lon": 2.41667,
+      "lat": 48.799999
+    }
+  },
+  {
+    "id": 6455394,
+    "name": "Les Ulis",
+    "country": "FR",
+    "coord": {
+      "lon": 2.16932,
+      "lat": 48.68174
+    }
+  },
+  {
+    "id": 7300065,
+    "name": "Yate",
+    "country": "GB",
+    "coord": {
+      "lon": -2.40944,
+      "lat": 51.54805
+    }
+  },
+  {
+    "id": 7292818,
+    "name": "Caia Park",
+    "country": "GB",
+    "coord": {
+      "lon": -2.97767,
+      "lat": 53.045219
+    }
+  },
+  {
+    "id": 7290657,
+    "name": "Worcester District",
+    "country": "GB",
+    "coord": {
+      "lon": -2.20886,
+      "lat": 52.196121
+    }
+  },
+  {
+    "id": 3333222,
+    "name": "Borough of Wolverhampton",
+    "country": "GB",
+    "coord": {
+      "lon": -2.11667,
+      "lat": 52.583328
+    }
+  },
+  {
+    "id": 7299965,
+    "name": "Winsford",
+    "country": "GB",
+    "coord": {
+      "lon": -2.52331,
+      "lat": 53.19191
+    }
+  },
+  {
+    "id": 2634551,
+    "name": "Welwyn Hatfield",
+    "country": "GB",
+    "coord": {
+      "lon": -0.21667,
+      "lat": 51.75
+    }
+  },
+  {
+    "id": 3333211,
+    "name": "Borough of Trafford",
+    "country": "GB",
+    "coord": {
+      "lon": -2.33333,
+      "lat": 53.416672
+    }
+  }
+]

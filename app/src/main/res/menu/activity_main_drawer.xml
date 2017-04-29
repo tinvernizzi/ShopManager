@@ -5,14 +5,14 @@
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_send"
-            android:title="Home" />
+            android:title="Accueil" />
 
-        <item android:title="Products">
+        <item android:title="Produits">
             <menu>
                 <item
                     android:id="@+id/nav_table"
                     android:icon="@drawable/ic_menu_camera"
-                    android:title="Products Overview" />
+                    android:title="Vue globale" />
             </menu>
         </item>
         <item
@@ -25,7 +25,7 @@
             android:title="Tools" />
     </group>
 
-    <item android:title="Shop">
+    <item android:title="Magasin">
         <menu>
             <item
                 android:id="@+id/nav_share"

@@ -16,15 +16,15 @@ import java.util.List;
 
 import tanguy.shopmanager.model.Article;
 
-public class ArticleDatabaseHelper extends SQLiteOpenHelper {
+public class ShopDatabaseHelper extends SQLiteOpenHelper {
 
-    private static String DB_NAME = "PRODUCT_DATA";
+    private static String DB_NAME = "SHOP_DATA";
+    protected SQLiteDatabase myDataBase;
+    protected Context myContext;
 
-    private SQLiteDatabase myDataBase;
-    private final Context myContext;
     private List<Article> articles = new ArrayList<>();
 
-    public ArticleDatabaseHelper(Context context) {
+    public ShopDatabaseHelper(Context context) {
         super(context, DB_NAME, null, 1);
         this.myContext = context;
     }
