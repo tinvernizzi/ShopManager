@@ -10,27 +10,33 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:weightSum="1">
 
     <ImageView
         android:id="@+id/profilePicture"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="82dp"
+        android:layout_height="39dp"
+        android:layout_weight="1.45"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@android:drawable/sym_def_app_icon" />
+        app:srcCompat="@drawable/photo_kevin" />
 
     <TextView
         android:id="@+id/user"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
+        android:includeFontPadding="false"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="user"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:password="false"
+        android:text="Kevin Dupont"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="user@android.com" />
+        android:text="kevin@tobeortohave.com" />
 
 </LinearLayout>

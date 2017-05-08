@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import tanguy.shopmanager.charts.BarChartActivity;
 import tanguy.shopmanager.weather.WeatherManager;
 
 public class MainActivity extends AppCompatActivity
@@ -63,7 +64,6 @@ public class MainActivity extends AppCompatActivity
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
@@ -114,7 +114,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
-
+            BarChartActivity barChartActivity = new BarChartActivity();
+            Intent myIntent = new Intent(this, BarChartActivity.class);
+            this.startActivity(myIntent);
         } else if (id == R.id.nav_send) {
 
         }
