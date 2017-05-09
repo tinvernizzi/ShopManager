@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -16,22 +15,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tanguy.shopmanager.model.Article;
-import tanguy.shopmanager.model.Day;
 
-public class ShopDatabaseHelper extends SQLiteOpenHelper {
+public class ProductsDatabaseHelper extends SQLiteOpenHelper {
 
-    private static String DB_NAME = "SHOP_DATA.db";
+    private static String DB_NAME = "PRODUCTS_DATA";
     protected SQLiteDatabase myDataBase;
     protected Context myContext;
 
-    private List<Day> days = new ArrayList<>();
+    private List<Article> articles = new ArrayList<>();
 
-    public ShopDatabaseHelper(Context context) {
+    public ProductsDatabaseHelper(Context context) {
         super(context, DB_NAME, null, 1);
         this.myContext = context;
     }
 
     public void openDataBase() throws SQLException, IOException {
+        //Open the database
         String myPath = myContext.getDatabasePath(DB_NAME).getAbsolutePath();
         System.out.println(myPath);
         myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
@@ -95,23 +94,20 @@ public class ShopDatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 
-    public List<Day> getAllDays() {
-        Cursor cursor = myDataBase.rawQuery("SELECT * FROM SHOP_DATA ORDER BY date DESC", null);
+    public List<Article> getAllArticles() {
+        Cursor cursor = myDataBase.rawQuery("SELECT * FROM PRODUCT_DATA ORDER BY id DESC", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            days.add(new Day(
-                    cursor.getInt(1),
-                    cursor.getString(2),
-                    cursor.getString(3),
-                    cursor.getInt(4),
-                    cursor.getInt(5))
-            );
+            articles.add(new Article(cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getInt(2),
+                    cursor.getInt(3)));
             cursor.moveToNext();
         }
-        return days;
+        return articles;
     }
 
-    public Day getDay(Cursor cursor) {
-        return days.get(cursor.getCount());
+    public Article getArticle(Cursor cursor) {
+        return articles.get(cursor.getCount());
     }
 }

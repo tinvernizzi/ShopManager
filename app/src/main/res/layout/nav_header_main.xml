@@ -18,15 +18,15 @@
         android:layout_width="82dp"
         android:layout_height="39dp"
         android:layout_weight="1.45"
+        android:layout_marginTop="15dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         app:srcCompat="@drawable/photo_kevin" />
 
     <TextView
         android:id="@+id/user"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:includeFontPadding="false"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:password="false"
         android:text="Kevin Dupont"
         android:textAlignment="viewStart"

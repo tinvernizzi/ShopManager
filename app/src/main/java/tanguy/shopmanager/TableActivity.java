@@ -14,7 +14,7 @@ import java.util.Random;
 import de.codecrafters.tableview.listeners.SwipeToRefreshListener;
 import de.codecrafters.tableview.listeners.TableDataClickListener;
 import de.codecrafters.tableview.listeners.TableDataLongClickListener;
-import tanguy.shopmanager.database.ShopDatabaseHelper;
+import tanguy.shopmanager.database.ProductsDatabaseHelper;
 import tanguy.shopmanager.model.Article;
 import tanguy.shopmanager.productTable.ArticleTableDataAdapter;
 import tanguy.shopmanager.productTable.SortableArticleTableView;
@@ -33,7 +33,7 @@ public class TableActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
         }
 
-        ShopDatabaseHelper databaseHelper = new ShopDatabaseHelper(this.getApplicationContext());
+        ProductsDatabaseHelper databaseHelper = new ProductsDatabaseHelper(this.getApplicationContext());
         try {
             databaseHelper.createDataBase();
         } catch (IOException e) {

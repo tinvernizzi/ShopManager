@@ -14,7 +14,7 @@ import android.support.v4.app.FragmentActivity;
 public abstract class BaseChart extends FragmentActivity {
 
     protected String[] mMonths = new String[] {
-            "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"
+            "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
     };
 
     protected String[] mParties = new String[] {
@@ -24,15 +24,9 @@ public abstract class BaseChart extends FragmentActivity {
             "Party Y", "Party Z"
     };
 
-    protected Typeface mTfRegular;
-    protected Typeface mTfLight;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mTfRegular = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
-        mTfLight = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
     }
 
     protected float getRandom(float range, float startsfrom) {

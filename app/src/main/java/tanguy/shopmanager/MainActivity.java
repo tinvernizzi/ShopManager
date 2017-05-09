@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import tanguy.shopmanager.charts.BarChartActivity;
+import tanguy.shopmanager.charts.TimeSpentChartActivity;
 import tanguy.shopmanager.weather.WeatherManager;
 
 public class MainActivity extends AppCompatActivity
@@ -118,7 +119,9 @@ public class MainActivity extends AppCompatActivity
             Intent myIntent = new Intent(this, BarChartActivity.class);
             this.startActivity(myIntent);
         } else if (id == R.id.nav_send) {
-
+            TimeSpentChartActivity timeSpentChartActivity = new TimeSpentChartActivity();
+            Intent myIntent = new Intent(this, TimeSpentChartActivity.class);
+            this.startActivity(myIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

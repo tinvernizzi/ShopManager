@@ -29,16 +29,18 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.MPPointF;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import tanguy.shopmanager.R;
+import tanguy.shopmanager.database.ProductsDatabaseHelper;
+import tanguy.shopmanager.database.ShopDatabaseHelper;
+import tanguy.shopmanager.model.Day;
 
 public class BarChartActivity extends BaseChart implements OnSeekBarChangeListener,
         OnChartValueSelectedListener {
 
     protected BarChart mChart;
-    private SeekBar mSeekBarX, mSeekBarY;
-    private TextView tvX, tvY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +48,6 @@ public class BarChartActivity extends BaseChart implements OnSeekBarChangeListen
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_barchart);
-
-        tvX = (TextView) findViewById(R.id.tvXMax);
-        tvY = (TextView) findViewById(R.id.tvYMax);
-
-        mSeekBarX = (SeekBar) findViewById(R.id.seekBar1);
-        mSeekBarY = (SeekBar) findViewById(R.id.seekBar2);
 
         mChart = (BarChart) findViewById(R.id.chart1);
         mChart.setOnChartValueSelectedListener(this);
@@ -75,7 +71,6 @@ public class BarChartActivity extends BaseChart implements OnSeekBarChangeListen
 
         XAxis xAxis = mChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setTypeface(mTfLight);
         xAxis.setDrawGridLines(false);
         xAxis.setGranularity(1f); // only intervals of 1 day
         xAxis.setLabelCount(7);
@@ -84,7 +79,6 @@ public class BarChartActivity extends BaseChart implements OnSeekBarChangeListen
         IAxisValueFormatter custom = new MyAxisValueFormatter();
 
         YAxis leftAxis = mChart.getAxisLeft();
-        leftAxis.setTypeface(mTfLight);
         leftAxis.setLabelCount(8, false);
         leftAxis.setValueFormatter(custom);
         leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
@@ -93,7 +87,6 @@ public class BarChartActivity extends BaseChart implements OnSeekBarChangeListen
 
         YAxis rightAxis = mChart.getAxisRight();
         rightAxis.setDrawGridLines(false);
-        rightAxis.setTypeface(mTfLight);
         rightAxis.setLabelCount(8, false);
         rightAxis.setValueFormatter(custom);
         rightAxis.setSpaceTop(15f);
@@ -118,15 +111,6 @@ public class BarChartActivity extends BaseChart implements OnSeekBarChangeListen
         mChart.setMarker(mv); // Set the marker to the chart
 
         setData(12, 50);
-
-        // setting data
-        mSeekBarY.setProgress(50);
-        mSeekBarX.setProgress(12);
-
-        mSeekBarY.setOnSeekBarChangeListener(this);
-        mSeekBarX.setOnSeekBarChangeListener(this);
-
-        // mChart.setDrawLegend(false);
     }
 
     @Override
@@ -209,11 +193,6 @@ public class BarChartActivity extends BaseChart implements OnSeekBarChangeListen
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-        tvX.setText("" + (mSeekBarX.getProgress() + 2));
-        tvY.setText("" + (mSeekBarY.getProgress()));
-
-        setData(mSeekBarX.getProgress() + 1 , mSeekBarY.getProgress());
         mChart.invalidate();
     }
 
@@ -228,18 +207,31 @@ public class BarChartActivity extends BaseChart implements OnSeekBarChangeListen
     }
 
     private void setData(int count, float range) {
-
         float start = 1f;
+
+        ShopDatabaseHelper shopDatabaseHelper = new ShopDatabaseHelper(getApplicationContext());
+        try {
+            shopDatabaseHelper.createDataBase();
+            shopDatabaseHelper.openDataBase();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
 
-        for (int i = (int) start; i < start + count + 1; i++) {
-            float mult = (range + 1);
-            float val = (float) (Math.random() * mult);
-
-            yVals1.add(new BarEntry(i, val));
+        int i = 0;
+        for (Day day: shopDatabaseHelper.getAllDays()) {
+            yVals1.add(new BarEntry(i, day.getMeanMoneySpent()));
+            i++;
+            Log.d("day", i + " meanMoney: " + day.getMeanMoneySpent());
+            Log.d("day",  i + " timeshop: " + day.getMeanTimeSpentInShop());
+            Log.d("day",  i + " timemall: " + day.getMeanTimeSpentInShoppingMall());
+            Log.d("day",  i + " sell: " + day.getNumberOfSellers());
+            Log.d("day",  i + " temp: " + day.getTemperatureCelsius());
+            if (i > 50) {
+                break;
+            }
         }
-
         BarDataSet set1;
 
         if (mChart.getData() != null &&
@@ -249,7 +241,7 @@ public class BarChartActivity extends BaseChart implements OnSeekBarChangeListen
             mChart.getData().notifyDataChanged();
             mChart.notifyDataSetChanged();
         } else {
-            set1 = new BarDataSet(yVals1, "The year 2017");
+            set1 = new BarDataSet(yVals1, "Argent moyen dépensé par les clients");
 
             set1.setDrawIcons(false);
 
@@ -260,7 +252,7 @@ public class BarChartActivity extends BaseChart implements OnSeekBarChangeListen
 
             BarData data = new BarData(dataSets);
             data.setValueTextSize(10f);
-            data.setValueTypeface(mTfLight);
+
             data.setBarWidth(0.9f);
 
             mChart.setData(data);

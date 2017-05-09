@@ -16,6 +16,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+
 public class WeatherManager {
 
     private static String LIST_OF_CITIES = "citylist.json"; //TODO: JSON de 30 mega :(

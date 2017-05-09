@@ -28,6 +28,8 @@
             android:name="tanguy.shopmanager.TableActivity"
             android:label="@string/title_activity_table" >
         </activity>
+        <activity android:name=".charts.BarChartActivity"></activity>
+        <activity android:name=".charts.TimeSpentChartActivity"></activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
