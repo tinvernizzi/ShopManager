@@ -6,8 +6,8 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -21,27 +21,39 @@
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="tanguy.shopmanager.TableActivity"
-            android:label="@string/title_activity_table" >
-        </activity>
-        <activity android:name=".charts.BarChartActivity"></activity>
-        <activity android:name=".charts.TimeSpentChartActivity"></activity>
+            android:name=".TableActivity"
+            android:label="@string/title_activity_table"></activity>
+        <activity android:name=".charts.BarChartActivity" />
+        <activity android:name=".charts.TimeSpentChartActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
 
-        <receiver android:name="widget.WeatherWidgetProvider" >
+        <receiver android:name="widget.WeatherWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
-            <meta-data android:name="android.appwidget.provider"
+
+            <meta-data
+                android:name="android.appwidget.provider"
                 android:resource="@xml/weather_widget_info" />
         </receiver>
+
+        <activity
+            android:name=".ProductActivity"
+            android:label="@string/title_activity_product"
+            android:parentActivityName=".TableActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="tanguy.shopmanager.TableActivity" />
+        </activity>
     </application>
 
 </manifest>

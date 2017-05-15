@@ -96,11 +96,11 @@ public class ShopDatabaseHelper extends SQLiteOpenHelper {
     }
 
     public List<Day> getAllDays() {
-        Cursor cursor = myDataBase.rawQuery("SELECT * FROM SHOP_DATA ORDER BY date DESC", null);
+        Cursor cursor = myDataBase.rawQuery("SELECT * FROM SHOP_DATA ORDER BY date ASC", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             days.add(new Day(
-                    cursor.getInt(1),
+                    cursor.getString(1),
                     cursor.getString(2),
                     cursor.getString(3),
                     cursor.getInt(4),

@@ -1,5 +1,6 @@
 package tanguy.shopmanager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -14,6 +15,7 @@ import java.util.Random;
 import de.codecrafters.tableview.listeners.SwipeToRefreshListener;
 import de.codecrafters.tableview.listeners.TableDataClickListener;
 import de.codecrafters.tableview.listeners.TableDataLongClickListener;
+import tanguy.shopmanager.charts.TimeSpentChartActivity;
 import tanguy.shopmanager.database.ProductsDatabaseHelper;
 import tanguy.shopmanager.model.Article;
 import tanguy.shopmanager.productTable.ArticleTableDataAdapter;
@@ -87,6 +89,9 @@ public class TableActivity extends AppCompatActivity {
         public void onDataClicked(final int rowIndex, final Article clickedData) {
             final String articleString = "Click: " + clickedData.getName() + " " + clickedData.getName();
             Toast.makeText(TableActivity.this, articleString, Toast.LENGTH_SHORT).show();
+            Intent myIntent = new Intent(getApplicationContext(), ProductActivity.class);
+            myIntent.putExtra("productName", clickedData.getName());
+            getApplicationContext().startActivity(myIntent);
         }
     }
 

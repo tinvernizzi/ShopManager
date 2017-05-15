@@ -110,10 +110,6 @@ public class MainActivity extends AppCompatActivity
             this.startActivity(myIntent);
         } else if (id == R.id.nav_gallery) {
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
         } else if (id == R.id.nav_share) {
             BarChartActivity barChartActivity = new BarChartActivity();
             Intent myIntent = new Intent(this, BarChartActivity.class);

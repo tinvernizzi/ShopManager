@@ -4,9 +4,8 @@ import com.github.mikephil.charting.charts.BarLineChartBase;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
-/**
- * Created by philipp on 02/06/16.
- */
+import java.util.Calendar;
+
 public class DayAxisValueFormatter implements IAxisValueFormatter
 {
 
@@ -22,7 +21,6 @@ public class DayAxisValueFormatter implements IAxisValueFormatter
 
     @Override
     public String getFormattedValue(float value, AxisBase axis) {
-
         int days = (int) value;
 
         int year = determineYear(days);
@@ -32,7 +30,6 @@ public class DayAxisValueFormatter implements IAxisValueFormatter
         String yearName = String.valueOf(year);
 
         if (chart.getVisibleXRange() > 30 * 6) {
-
             return monthName + " " + yearName;
         } else {
 
