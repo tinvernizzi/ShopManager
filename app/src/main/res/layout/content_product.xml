@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,11 +9,49 @@
     tools:context="tanguy.shopmanager.ProductActivity"
     tools:showIn="@layout/activity_product">
 
-    <TextView
-        android:id="@+id/productTextView"
-        android:layout_width="wrap_content"
+    <LinearLayout android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:text="@string/large_text" />
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/productImageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_weight="1.45"
+            android:layout_marginTop="15dp"
+            android:paddingTop="@dimen/nav_header_vertical_spacing"
+            app:srcCompat="@drawable/photo_kevin"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/priceTextView"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:gravity="center"
+            android:text="There should be the price here"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/stockTextView"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:text="There should be the stock information here"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/descriptionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:gravity="center"
+            android:text="@string/large_text"
+            android:textAlignment="center" />
+    </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>
+

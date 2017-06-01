@@ -56,7 +56,7 @@ public final class ArticleComparators {
 
         @Override
         public int compare(final Article article1, final Article article2) {
-            return article1.getID() - article2.getID();
+            return article1.getId() - article2.getId();
         }
     }
 

@@ -6,6 +6,12 @@
     android:layout_height="match_parent"
     tools:context="tanguy.shopmanager.MainActivity">
 
+    <ImageView
+        android:id="@+id/wallpaper"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        app:srcCompat="?android:attr/scrollbarThumbHorizontal" />
+
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,18 +32,21 @@
         android:layout_below='@+id/toolbar'
         android:layout_marginTop="60dp">
 
-        <ImageView
-            android:id="@+id/logoImageView"
+        <TextView
+            android:id="@+id/logoTextView"
             android:layout_width="match_parent"
             android:layout_height="112dp"
             android:adjustViewBounds="true"
-            app:srcCompat="@android:drawable/star_big_on" />
+            android:fontFamily="cursive"
+            android:gravity="center"
+            android:textSize="50sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/welcomeTextView"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:layout_below='@+id/logoImageView'
+            android:layout_below='@+id/logoTextView'
             android:textSize="30sp"
             android:gravity="center"
             android:text="@string/welcome_text_placeholder" />
@@ -49,18 +58,11 @@
             android:textSize="20sp"
             android:layout_below='@+id/textView'
             android:gravity="center"
+            android:layout_marginTop="150dp"
             android:text="@string/overview_text_placeholder" />
     </RelativeLayout>
 
     <include layout="@layout/content_main"
         android:id="@+id/include" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
 
 </android.support.design.widget.CoordinatorLayout>

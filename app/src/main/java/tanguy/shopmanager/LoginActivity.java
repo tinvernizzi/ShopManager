@@ -35,7 +35,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.Manifest.permission.READ_CONTACTS;
-import static tanguy.shopmanager.R.id.logoImageView;
 import static tanguy.shopmanager.R.id.managerImageView;
 
 /**
@@ -197,6 +196,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             Intent myIntent = new Intent(this, MainActivity.class);
             myIntent.putExtra("name", email);
             this.startActivity(myIntent);
+            this.finish();
         }
     }
 

@@ -7,7 +7,10 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 public class ProductActivity extends AppCompatActivity {
 
@@ -19,21 +22,29 @@ public class ProductActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        TextView textView = (TextView) findViewById(R.id.productTextView);
-        textView.setText("Description du produit :" + R.string.large_text);
+        TextView textView = (TextView) findViewById(R.id.descriptionTextView);
+        textView.setText("Description du produit : " + extras.getString("productDescription"));
 
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
 
         collapsingToolbarLayout.setTitle(extras.getString("productName"));
+
+        ImageView imageView = (ImageView) findViewById(R.id.productImageView);
+        Picasso.with(this.getApplicationContext()).load(extras.getString("productImage")).into(imageView);
+
+        TextView priceView = (TextView) findViewById(R.id.priceTextView);
+        priceView.setText(extras.getFloat("productPrice") + " €");
+
+        TextView stockView = (TextView) findViewById(R.id.stockTextView);
+        if (extras.getInt("incoming") > 0) {
+            stockView.setText(extras.getInt("stock") + " produit(s) en stock,\n" +
+                    extras.getInt("incoming") + " produit(s) en cours de livraison,\n" +
+                    "livraison prévue le " + extras.getString("deliveryDate"));
+        }
+        else
+            stockView.setText(extras.getInt("stock") + " produit(s) en stock");
+
     }
 }

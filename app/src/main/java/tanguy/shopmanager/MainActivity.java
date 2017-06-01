@@ -1,6 +1,8 @@
 package tanguy.shopmanager;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.media.effect.Effect;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
@@ -34,15 +36,6 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -54,11 +47,21 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         //Ajoute le logo du magasin
-        ImageView logo = (ImageView) findViewById(R.id.logoImageView);
-        logo.setImageResource(R.drawable.tboth);
+        TextView logo = (TextView) findViewById(R.id.logoTextView);
+        logo.setText("To Be Or To Have");
+        logo.setTextColor(Color.WHITE);
+
+        //Ajoute le logo du magasin
+        ImageView wallpaper = (ImageView) findViewById(R.id.wallpaper);
+        wallpaper.setImageResource(R.drawable.wallpaper_flight);
+        wallpaper.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        TextView welcomeMessage = (TextView) findViewById(R.id.welcomeTextView);
+        welcomeMessage.setTextColor(Color.WHITE);
 
         //Adapte le texte a la meteo actuelle du magasin
         TextView textView = (TextView) findViewById(R.id.weatherTextView);
+        textView.setTextColor(Color.WHITE);
         try {
             WeatherManager weather = new WeatherManager("Biot", this.getApplicationContext());
             textView.setText(weather.generateWeatherReport());

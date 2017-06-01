@@ -101,7 +101,16 @@ public class ProductsDatabaseHelper extends SQLiteOpenHelper {
             articles.add(new Article(cursor.getInt(0),
                     cursor.getString(1),
                     cursor.getInt(2),
-                    cursor.getInt(3)));
+                    cursor.getInt(3),
+                    cursor.getString(4),
+                    cursor.getString(5),
+                    cursor.getString(6),
+                    cursor.getString(7),
+                    cursor.getString(8),
+                    cursor.getString(9),
+                    cursor.getString(10),
+                    cursor.getString(11),
+                    cursor.getString(12)));
             cursor.moveToNext();
         }
         return articles;

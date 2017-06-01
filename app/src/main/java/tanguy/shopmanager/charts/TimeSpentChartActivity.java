@@ -2,6 +2,7 @@ package tanguy.shopmanager.charts;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
@@ -29,13 +30,16 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.ScatterData;
 import com.github.mikephil.charting.data.ScatterDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
 import tanguy.shopmanager.R;
+import tanguy.shopmanager.database.ShopDatabaseHelper;
+import tanguy.shopmanager.model.Day;
 
-public class TimeSpentChartActivity extends BaseChart {
+public class TimeSpentChartActivity extends BaseChart  {
 
     private CombinedChart mChart;
     private final int itemcount = 12;
@@ -87,69 +91,56 @@ public class TimeSpentChartActivity extends BaseChart {
 
         CombinedData data = new CombinedData();
 
-        data.setData(generateLineData());
         data.setData(generateBarData());
 
-        //xAxis.setAxisMaximum(data.getXMax() + 0.25f);
+        xAxis.setAxisMaximum(data.getXMax() + 0.25f);
 
         mChart.setData(data);
         mChart.invalidate();
     }
 
-    private LineData generateLineData() {
-
-        LineData d = new LineData();
-
-        ArrayList<Entry> entries = new ArrayList<Entry>();
-
-        for (int index = 0; index < itemcount; index++)
-            entries.add(new Entry(index + 0.5f, getRandom(15, 5)));
-
-        LineDataSet set = new LineDataSet(entries, "Temps moyen de visite dans le magasin (minutes)");
-        set.setColor(Color.rgb(240, 238, 70));
-        set.setLineWidth(2.5f);
-        set.setCircleColor(Color.rgb(240, 238, 70));
-        set.setCircleRadius(5f);
-        set.setFillColor(Color.rgb(240, 238, 70));
-        set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
-        set.setDrawValues(true);
-        set.setValueTextSize(10f);
-        set.setValueTextColor(Color.rgb(240, 238, 70));
-
-        set.setAxisDependency(YAxis.AxisDependency.LEFT);
-        d.addDataSet(set);
-
-        return d;
-    }
-
     private BarData generateBarData() {
 
         ArrayList<BarEntry> entries1 = new ArrayList<BarEntry>();
+        ArrayList<BarEntry> entries2 = new ArrayList<BarEntry>();
 
-        for (int index = 0; index < itemcount; index++) {
-            entries1.add(new BarEntry(0, getRandom(25, 25)));
+        ShopDatabaseHelper shopDatabaseHelper = new ShopDatabaseHelper(getApplicationContext());
+        try {
+            shopDatabaseHelper.createDataBase();
+            shopDatabaseHelper.openDataBase();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        BarDataSet set1 = new BarDataSet(entries1, "Temps moyen de visite dans le centre commercial (minutes)");
-        set1.setColor(Color.rgb(60, 220, 78));
-        set1.setValueTextColor(Color.rgb(60, 220, 78));
-        set1.setValueTextSize(10f);
-        set1.setAxisDependency(YAxis.AxisDependency.LEFT);
+        int i = 0;
+        for (Day day: shopDatabaseHelper.getAllDays()) {
+            entries2.add(new BarEntry(i, new float[]{day.getMeanTimeSpentInShop(), day.getMeanTimeSpentInShoppingMall() - day.getMeanTimeSpentInShop()}));
+            i++;
+            if (i > itemcount) {
+                break;
+            }
+        }
+
+        BarDataSet set2 = new BarDataSet(entries2, "");
+        set2.setStackLabels(new String[]{"Temps moyen de visite dans le magasin (minutes)", "Temps moyen de visite dans le centre commercial (minutes)"});
+        set2.setColors(new int[]{Color.rgb(61, 165, 255), Color.rgb(23, 197, 255)});
+        set2.setValueTextColor(Color.rgb(61, 165, 255));
+        set2.setValueTextSize(10f);
+        set2.setAxisDependency(YAxis.AxisDependency.LEFT);
 
         float groupSpace = 0.06f;
         float barSpace = 0.02f; // x2 dataset
         float barWidth = 0.45f; // x2 dataset
         // (0.45 + 0.02) * 2 + 0.06 = 1.00 -> interval per "group"
 
-        BarData d = new BarData(set1);
-        d.setValueTextSize(10f);
-        d.setBarWidth(0.9f);
+        BarData d = new BarData(set2);
+
         return d;
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-       // getMenuInflater().inflate(R.menu.combined, menu);
+        //getMenuInflater().inflate(R.menu.combined, menu);
         return true;
     }
 
@@ -184,8 +175,7 @@ public class TimeSpentChartActivity extends BaseChart {
                 mChart.invalidate();
                 break;
             }
-        }
-        */
+        }*/
         return true;
     }
 }

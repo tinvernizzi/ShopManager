@@ -70,7 +70,7 @@ public class TableActivity extends AppCompatActivity {
                             articleTableDataAdapter.getData().add(randomArticle);
                             articleTableDataAdapter.notifyDataSetChanged();
                             refreshIndicator.hide();
-                            Toast.makeText(TableActivity.this, "Added: " + randomArticle.getName(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(TableActivity.this, "Base de donnée mise à jour", Toast.LENGTH_SHORT).show();
                         }
                     }, 3000);
                 }
@@ -87,10 +87,16 @@ public class TableActivity extends AppCompatActivity {
 
         @Override
         public void onDataClicked(final int rowIndex, final Article clickedData) {
-            final String articleString = "Click: " + clickedData.getName() + " " + clickedData.getName();
-            Toast.makeText(TableActivity.this, articleString, Toast.LENGTH_SHORT).show();
+            //final String articleString = "Click: " + clickedData.getName() + " " + clickedData.getName();
+            //Toast.makeText(TableActivity.this, articleString, Toast.LENGTH_SHORT).show();
             Intent myIntent = new Intent(getApplicationContext(), ProductActivity.class);
             myIntent.putExtra("productName", clickedData.getName());
+            myIntent.putExtra("productDescription", clickedData.getDescription());
+            myIntent.putExtra("productPrice", clickedData.getPrice());
+            myIntent.putExtra("productImage", clickedData.getImage());
+            myIntent.putExtra("deliveryDate", clickedData.getDeliveryDate());
+            myIntent.putExtra("stock", clickedData.getStock());
+            myIntent.putExtra("incoming", clickedData.getIncoming());
             getApplicationContext().startActivity(myIntent);
         }
     }
@@ -99,8 +105,8 @@ public class TableActivity extends AppCompatActivity {
 
         @Override
         public boolean onDataLongClicked(final int rowIndex, final Article clickedData) {
-            final String articleString = "Long Click: " + clickedData.getName() + " " + clickedData.getName();
-            Toast.makeText(TableActivity.this, articleString, Toast.LENGTH_SHORT).show();
+            //final String articleString = "Long Click: " + clickedData.getName() + " " + clickedData.getName();
+            //Toast.makeText(TableActivity.this, articleString, Toast.LENGTH_SHORT).show();
             return true;
         }
     }

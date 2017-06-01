@@ -93,7 +93,7 @@ public class ArticleTableDataAdapter extends LongPressAwareTableDataAdapter<Arti
     }
 
     private View renderId(final Article article) {
-        return renderString(((Integer)article.getID()).toString());
+        return renderString(((Integer)article.getId()).toString());
     }
 
     private View renderName(final Article article) {

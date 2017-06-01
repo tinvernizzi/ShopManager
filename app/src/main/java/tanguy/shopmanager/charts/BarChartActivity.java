@@ -1,7 +1,7 @@
-
 package tanguy.shopmanager.charts;
 
 import android.graphics.RectF;
+import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -9,9 +9,6 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
-import android.widget.TextView;
-import android.widget.Toast;
-
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Legend;
@@ -24,16 +21,13 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.MPPointF;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import tanguy.shopmanager.R;
-import tanguy.shopmanager.database.ProductsDatabaseHelper;
 import tanguy.shopmanager.database.ShopDatabaseHelper;
 import tanguy.shopmanager.model.Day;
 
@@ -228,7 +222,7 @@ public class BarChartActivity extends BaseChart implements OnSeekBarChangeListen
             Log.d("day",  i + " timemall: " + day.getMeanTimeSpentInShoppingMall());
             Log.d("day",  i + " sell: " + day.getNumberOfSellers());
             Log.d("day",  i + " temp: " + day.getTemperatureCelsius());
-            if (i > 50) {
+            if (i > 31) {
                 break;
             }
         }
