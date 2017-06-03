@@ -123,7 +123,7 @@ public class TimeSpentChartActivity extends BaseChart  {
 
         BarDataSet set2 = new BarDataSet(entries2, "");
         set2.setStackLabels(new String[]{"Temps moyen de visite dans le magasin (minutes)", "Temps moyen de visite dans le centre commercial (minutes)"});
-        set2.setColors(new int[]{Color.rgb(61, 165, 255), Color.rgb(23, 197, 255)});
+        set2.setColors(new int[]{Color.rgb(61, 165, 255), Color.rgb(23, 230, 255)});
         set2.setValueTextColor(Color.rgb(61, 165, 255));
         set2.setValueTextSize(10f);
         set2.setAxisDependency(YAxis.AxisDependency.LEFT);

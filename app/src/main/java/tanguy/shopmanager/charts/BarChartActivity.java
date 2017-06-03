@@ -217,11 +217,6 @@ public class BarChartActivity extends BaseChart implements OnSeekBarChangeListen
         for (Day day: shopDatabaseHelper.getAllDays()) {
             yVals1.add(new BarEntry(i, day.getMeanMoneySpent()));
             i++;
-            Log.d("day", i + " meanMoney: " + day.getMeanMoneySpent());
-            Log.d("day",  i + " timeshop: " + day.getMeanTimeSpentInShop());
-            Log.d("day",  i + " timemall: " + day.getMeanTimeSpentInShoppingMall());
-            Log.d("day",  i + " sell: " + day.getNumberOfSellers());
-            Log.d("day",  i + " temp: " + day.getTemperatureCelsius());
             if (i > 31) {
                 break;
             }

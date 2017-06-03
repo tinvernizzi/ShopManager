@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -51,10 +52,6 @@ public class MainActivity extends AppCompatActivity
         logo.setText("To Be Or To Have");
         logo.setTextColor(Color.WHITE);
 
-        //Ajoute le logo du magasin
-        ImageView wallpaper = (ImageView) findViewById(R.id.wallpaper);
-        wallpaper.setImageResource(R.drawable.wallpaper_flight);
-        wallpaper.setScaleType(ImageView.ScaleType.FIT_XY);
 
         TextView welcomeMessage = (TextView) findViewById(R.id.welcomeTextView);
         welcomeMessage.setTextColor(Color.WHITE);
@@ -64,6 +61,8 @@ public class MainActivity extends AppCompatActivity
         textView.setTextColor(Color.WHITE);
         try {
             WeatherManager weather = new WeatherManager("Biot", this.getApplicationContext());
+            Log.d("generateWeatherReport", "test");
+            Log.d("generateWeatherReport", weather.generateWeatherReport());
             textView.setText(weather.generateWeatherReport());
         } catch (Exception e) {
             e.printStackTrace();
@@ -93,11 +92,6 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }

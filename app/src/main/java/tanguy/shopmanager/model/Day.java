@@ -13,7 +13,6 @@ public class Day { //recherche, commander un nouveau produit, livraisons imminen
         meanMoneySpent = meanMoneySpent.replaceAll("€", "0").replaceAll(",",".");
         this.meanMoneySpent =
                 Float.parseFloat(meanMoneySpent);
-        Log.d("MONEY", "MONEY: " + meanMoneySpent);
         String[] shopSplit = meanTimeSpentInShop.split(":");
         this.meanTimeSpentInShop = Integer.parseInt(shopSplit[0]) * 60 + Integer.parseInt(shopSplit[1]);
         String[] mallSplit = meanTimeSpentInShoppingMall.split(":");
@@ -28,7 +27,7 @@ public class Day { //recherche, commander un nouveau produit, livraisons imminen
     }
 
     public int getMeanTimeSpentInShop() {
-        return meanTimeSpentInShop;
+        return meanTimeSpentInShop + 5;
     }
 
     public int getMeanTimeSpentInShoppingMall() {

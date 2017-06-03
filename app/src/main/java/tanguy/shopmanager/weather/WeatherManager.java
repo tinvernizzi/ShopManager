@@ -16,6 +16,9 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import tanguy.shopmanager.database.ShopDatabaseHelper;
+import tanguy.shopmanager.model.Day;
+
 
 public class WeatherManager {
 
@@ -57,8 +60,6 @@ public class WeatherManager {
     }
 
     public String generateWeatherReport() throws Exception {
-        String weatherReport;
-
         if (cityID.equals("-1")) {
             return "There seems to be a problem with the request to the OpenWeatherMap API";
         }
@@ -66,8 +67,27 @@ public class WeatherManager {
         JSONParser parser = new JSONParser();
         forecast = (JSONObject) parser.parse(readUrl("http://api.openweathermap.org/data/2.5/weather?id=" + cityID + "&appid=" + API_KEY + "&lang=" + LANG));
         String weather = (String) ((JSONObject)(((JSONArray) forecast.get("weather")).get(0))).get("description");
+        Double temp = (((Double)(((JSONObject) forecast.get("main")).get("temp")))) - 273.15;
+        Log.d("Weather", weather);
+        Log.d("temp", temp.toString());
+        String weatherForecast = "\n\n\n\nMétéo a " + forecast.get("name") + " : " + weather + ".\n La température actuelle est de " + temp + "°C.";
 
-        return ("Meteo a " + forecast.get("name") + " : " + weather + ".");
+        ShopDatabaseHelper shopDatabaseHelper = new ShopDatabaseHelper(this.context);
+        try {
+            shopDatabaseHelper.createDataBase();
+            shopDatabaseHelper.openDataBase();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        for (Day day : shopDatabaseHelper.getAllDays()) {
+            if (temp - 3 < day.getTemperatureCelsius() && day.getTemperatureCelsius() < temp + 3) {
+                weatherForecast = weatherForecast.concat("\n\nLa derniére fois qu'il faisait ce temps, les gens ont passé en moyenne " + day.getMeanTimeSpentInShop() + " minutes dans votre magasin et vous aviez " + day.getNumberOfSellers() + " vendeurs disponibles");
+                return weatherForecast;
+            }
+        }
+
+        return weatherForecast;
     }
 
     public void setForecastImage(ImageView image) {
