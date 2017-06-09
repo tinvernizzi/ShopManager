@@ -123,15 +123,14 @@ public class TimeSpentChartActivity extends BaseChart  {
 
         BarDataSet set2 = new BarDataSet(entries2, "");
         set2.setStackLabels(new String[]{"Temps moyen de visite dans le magasin (minutes)", "Temps moyen de visite dans le centre commercial (minutes)"});
-        set2.setColors(new int[]{Color.rgb(61, 165, 255), Color.rgb(23, 230, 255)});
+        set2.setColors(Color.rgb(61, 165, 255), Color.rgb(23, 230, 255));
         set2.setValueTextColor(Color.rgb(61, 165, 255));
         set2.setValueTextSize(10f);
         set2.setAxisDependency(YAxis.AxisDependency.LEFT);
 
         float groupSpace = 0.06f;
-        float barSpace = 0.02f; // x2 dataset
-        float barWidth = 0.45f; // x2 dataset
-        // (0.45 + 0.02) * 2 + 0.06 = 1.00 -> interval per "group"
+        float barSpace = 0.02f;
+        float barWidth = 0.45f;
 
         BarData d = new BarData(set2);
 
@@ -140,42 +139,11 @@ public class TimeSpentChartActivity extends BaseChart  {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //getMenuInflater().inflate(R.menu.combined, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        /*
-        switch (item.getItemId()) {
-            case R.id.actionToggleLineValues: {
-                for (IDataSet set : mChart.getData().getDataSets()) {
-                    if (set instanceof LineDataSet)
-                        set.setDrawValues(!set.isDrawValuesEnabled());
-                }
-
-                mChart.invalidate();
-                break;
-            }
-            case R.id.actionToggleBarValues: {
-                for (IDataSet set : mChart.getData().getDataSets()) {
-                    if (set instanceof BarDataSet)
-                        set.setDrawValues(!set.isDrawValuesEnabled());
-                }
-
-                mChart.invalidate();
-                break;
-            }
-            case R.id.actionRemoveDataSet: {
-
-                int rnd = (int) getRandom(mChart.getData().getDataSetCount(), 0);
-                mChart.getData().removeDataSet(mChart.getData().getDataSetByIndex(rnd));
-                mChart.getData().notifyDataChanged();
-                mChart.notifyDataSetChanged();
-                mChart.invalidate();
-                break;
-            }
-        }*/
         return true;
     }
 }

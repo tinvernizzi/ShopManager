@@ -82,7 +82,7 @@ public class WeatherManager {
 
         for (Day day : shopDatabaseHelper.getAllDays()) {
             if (temp - 3 < day.getTemperatureCelsius() && day.getTemperatureCelsius() < temp + 3) {
-                weatherForecast = weatherForecast.concat("\n\nLa derniére fois qu'il faisait ce temps, les gens ont passé en moyenne " + day.getMeanTimeSpentInShop() + " minutes dans votre magasin et vous aviez " + day.getNumberOfSellers() + " vendeurs disponibles");
+                weatherForecast = weatherForecast.concat("\n\nLa dernière fois qu'il faisait ce temps, les gens ont passé en moyenne " + day.getMeanTimeSpentInShop() + " minutes dans votre magasin et vous aviez " + day.getNumberOfSellers() + " vendeurs disponibles");
                 return weatherForecast;
             }
         }
