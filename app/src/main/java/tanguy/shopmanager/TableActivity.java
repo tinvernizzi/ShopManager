@@ -93,7 +93,12 @@ public class TableActivity extends AppCompatActivity {
             myIntent.putExtra("productName", clickedData.getName());
             myIntent.putExtra("productDescription", clickedData.getDescription());
             myIntent.putExtra("productPrice", clickedData.getPrice());
-            myIntent.putExtra("productImage", clickedData.getImage());
+            if (clickedData.getName().equals("SINGULAIR")) {
+                myIntent.putExtra("productImage", "https://www.topcanadianpharmacy.org/wp-content/uploads/2016/08/Singulair-package.jpg");
+            }
+            else {
+                myIntent.putExtra("productImage", "https://dummyimage.com/250x250/dddddd/000000.bmp");
+            }
             myIntent.putExtra("deliveryDate", clickedData.getDeliveryDate());
             myIntent.putExtra("stock", clickedData.getStock());
             myIntent.putExtra("incoming", clickedData.getIncoming());

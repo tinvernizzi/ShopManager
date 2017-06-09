@@ -13,11 +13,6 @@ import java.text.DecimalFormat;
 
 import tanguy.shopmanager.R;
 
-/**
- * Custom implementation of the MarkerView.
- *
- * @author Philipp Jahoda
- */
 public class XYMarkerView extends MarkerView {
 
     private TextView tvContent;
@@ -33,8 +28,6 @@ public class XYMarkerView extends MarkerView {
         format = new DecimalFormat("###.0");
     }
 
-    // callbacks everytime the MarkerView is redrawn, can be used to update the
-    // content (user-interface)
     @Override
     public void refreshContent(Entry e, Highlight highlight) {
 

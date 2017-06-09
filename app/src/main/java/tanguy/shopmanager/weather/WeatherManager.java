@@ -70,7 +70,8 @@ public class WeatherManager {
         Double temp = (((Double)(((JSONObject) forecast.get("main")).get("temp")))) - 273.15;
         Log.d("Weather", weather);
         Log.d("temp", temp.toString());
-        String weatherForecast = "\n\n\n\nMétéo a " + forecast.get("name") + " : " + weather + ".\n La température actuelle est de " + temp + "°C.";
+        String weatherForecast = "\n\n\n\nMétéo a " + forecast.get("name") + " : " + weather + ".\n La température actuelle est de " +
+                temp.toString().substring(0,4) + "°C.";
 
         ShopDatabaseHelper shopDatabaseHelper = new ShopDatabaseHelper(this.context);
         try {

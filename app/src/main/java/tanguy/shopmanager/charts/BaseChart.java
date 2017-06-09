@@ -29,10 +29,6 @@ public abstract class BaseChart extends FragmentActivity {
         super.onCreate(savedInstanceState);
     }
 
-    protected float getRandom(float range, float startsfrom) {
-        return (float) (Math.random() * range) + startsfrom;
-    }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();

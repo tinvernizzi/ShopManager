@@ -32,7 +32,7 @@ public class ProductActivity extends AppCompatActivity {
         collapsingToolbarLayout.setTitle(extras.getString("productName"));
 
         ImageView imageView = (ImageView) findViewById(R.id.productImageView);
-        Picasso.with(this.getApplicationContext()).load("https://dummyimage.com/250x250/dddddd/000000.bmp").into(imageView);
+        Picasso.with(this.getApplicationContext()).load(extras.getString("productImage")).into(imageView);
 
         TextView priceView = (TextView) findViewById(R.id.priceTextView);
         priceView.setText(extras.getFloat("productPrice") + " €");
